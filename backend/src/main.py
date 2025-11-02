@@ -7,6 +7,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from src.settings import get_settings
 from src.api.collect import router as collect_router
+from src.api.download import router as download_router
 
 # Configurar logging
 logging.basicConfig(
@@ -36,6 +37,7 @@ app.add_middleware(
 
 # Incluir rotas
 app.include_router(collect_router)
+app.include_router(download_router)
 
 
 @app.get("/")
