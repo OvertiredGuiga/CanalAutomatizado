@@ -28,3 +28,9 @@ celery_app.conf.update(
 
 # Auto-discover tasks
 celery_app.autodiscover_tasks(['src'])
+
+# Registrar tarefas manualmente para evitar problemas de importação
+try:
+    from src import tasks  # noqa: F401
+except ImportError:
+    pass
