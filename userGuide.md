@@ -6,7 +6,49 @@ O **Flamengo AI Creator** é uma aplicação web para coleta automatizada de ví
 
 ## Pré-requisitos
 
-### Para Linux (Ubuntu/Debian)
+Escolha o seu sistema operacional abaixo:
+
+### Windows (Nativo)
+
+1. **Instalar Python 3.11+:**
+   - Acesse [python.org](https://www.python.org/downloads/)
+   - Baixe Python 3.11 ou superior
+   - **IMPORTANTE:** Marque a opção "Add Python to PATH" durante a instalação
+   - Verifique a instalação:
+   ```cmd
+   python --version
+   ```
+
+2. **Instalar Node.js 18+:**
+   - Acesse [nodejs.org](https://nodejs.org/)
+   - Baixe a versão LTS
+   - Execute o instalador
+   - Verifique a instalação:
+   ```cmd
+   node --version
+   npm --version
+   ```
+
+3. **Instalar Redis:**
+   - Opção 1: Usar Windows Subsystem for Linux (WSL2) - veja seção WSL2 abaixo
+   - Opção 2: Usar Docker - [Docker Desktop para Windows](https://www.docker.com/products/docker-desktop)
+   - Opção 3: Usar Redis compilado para Windows - [Memurai Redis](https://www.memurai.com/)
+   
+   **Recomendado: Docker Desktop**
+   ```cmd
+   # Após instalar Docker Desktop, execute:
+   docker run -d -p 6379:6379 redis:latest
+   ```
+
+4. **Instalar Git:**
+   - Acesse [git-scm.com](https://git-scm.com/)
+   - Execute o instalador
+   - Verifique a instalação:
+   ```cmd
+   git --version
+   ```
+
+### Linux (Ubuntu/Debian)
 
 ```bash
 # Atualizar repositórios
@@ -26,7 +68,7 @@ sudo apt install -y redis-server
 sudo apt install -y git
 ```
 
-### Para WSL2 (Windows Subsystem for Linux)
+### WSL2 (Windows Subsystem for Linux)
 
 1. **Instalar WSL2:**
    - Abra PowerShell como administrador e execute:
@@ -36,7 +78,7 @@ sudo apt install -y git
    - Reinicie o computador
    - Escolha uma distribuição Linux (recomendado: Ubuntu 22.04)
 
-2. **Dentro do WSL2, execute os mesmos comandos do Linux acima:**
+2. **Dentro do WSL2, execute:**
    ```bash
    sudo apt update && sudo apt upgrade -y
    sudo apt install -y python3.11 python3.11-venv python3.11-dev python3-pip nodejs redis-server git
@@ -47,7 +89,7 @@ sudo apt install -y git
    sudo service redis-server start
    ```
 
-### Para macOS
+### macOS
 
 ```bash
 # Instalar Homebrew (se não tiver)
@@ -68,11 +110,33 @@ brew services start redis
 
 ## Inicialização dos Componentes
 
-A aplicação requer 4 componentes rodando simultaneamente. Abra **4 terminais diferentes** e siga as instruções abaixo.
+A aplicação requer 4 componentes rodando simultaneamente. Abra **4 terminais/prompts diferentes** e siga as instruções para seu sistema operacional.
 
 ### Terminal 1: Redis (Broker de Mensagens)
 
-**Linux/WSL:**
+#### Windows (com Docker)
+
+```cmd
+# Se não tiver iniciado o Redis com Docker, execute:
+docker run -d -p 6379:6379 redis:latest
+
+# Verificar se está rodando:
+docker ps
+```
+
+#### Windows (com Memurai)
+
+```cmd
+# Se instalou via Memurai, o Redis deve estar rodando como serviço
+# Verificar status:
+sc query memurai
+
+# Se não estiver rodando:
+net start memurai
+```
+
+#### Linux/WSL2
+
 ```bash
 # Iniciar o Redis
 redis-server
@@ -81,7 +145,8 @@ redis-server
 # * Ready to accept connections
 ```
 
-**macOS:**
+#### macOS
+
 ```bash
 # Se instalou via Homebrew
 brew services start redis
@@ -90,8 +155,8 @@ brew services start redis
 redis-server
 ```
 
-**Verificar se está rodando:**
-```bash
+**Verificar se está rodando (todos os SOs):**
+```
 redis-cli ping
 # Resposta esperada: PONG
 ```
@@ -100,13 +165,42 @@ redis-cli ping
 
 ### Terminal 2: Celery Worker (Processador de Tarefas)
 
-**Linux/WSL/macOS:**
+#### Windows
+
+```cmd
+# Navegar até o diretório do backend
+cd C:\caminho\para\CanalAutomatizado\backend
+
+# Criar ambiente virtual (primeira vez)
+python -m venv venv
+
+# Ativar o ambiente virtual
+venv\Scripts\activate
+
+# Instalar dependências (primeira vez)
+pip install -r requirements.txt
+
+# Iniciar o Celery worker
+celery -A src.celery_app worker --loglevel=info
+
+# Saída esperada:
+# celery@hostname ready to accept tasks
+```
+
+#### Linux/WSL2/macOS
+
 ```bash
 # Navegar até o diretório do backend
 cd /caminho/para/CanalAutomatizado/backend
 
+# Criar ambiente virtual (primeira vez)
+python3.11 -m venv venv
+
 # Ativar o ambiente virtual
 source venv/bin/activate
+
+# Instalar dependências (primeira vez)
+pip install -r requirements.txt
 
 # Iniciar o Celery worker
 celery -A src.celery_app worker --loglevel=info
@@ -119,7 +213,27 @@ celery -A src.celery_app worker --loglevel=info
 
 ### Terminal 3: FastAPI Backend (Servidor da API)
 
-**Linux/WSL/macOS:**
+#### Windows
+
+```cmd
+# Navegar até o diretório do backend
+cd C:\caminho\para\CanalAutomatizado\backend
+
+# Ativar o ambiente virtual
+venv\Scripts\activate
+
+# Instalar dependências (primeira vez)
+pip install -r requirements.txt
+
+# Iniciar o servidor FastAPI
+python -m uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
+
+# Saída esperada:
+# Uvicorn running on http://0.0.0.0:8000
+```
+
+#### Linux/WSL2/macOS
+
 ```bash
 # Navegar até o diretório do backend
 cd /caminho/para/CanalAutomatizado/backend
@@ -143,7 +257,24 @@ python -m uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
 
 ### Terminal 4: Vite Frontend (Aplicação Web)
 
-**Linux/WSL/macOS:**
+#### Windows
+
+```cmd
+# Navegar até o diretório do frontend
+cd C:\caminho\para\CanalAutomatizado\frontend
+
+# Instalar dependências (primeira vez)
+npm install
+
+# Iniciar o servidor de desenvolvimento
+npm run dev
+
+# Saída esperada:
+# ➜  Local:   http://localhost:5173/
+```
+
+#### Linux/WSL2/macOS
+
 ```bash
 # Navegar até o diretório do frontend
 cd /caminho/para/CanalAutomatizado/frontend
@@ -191,7 +322,10 @@ CAZETV_CHANNEL_ID=UCYYYYYYYYYYYYYYYYYYYYYYYy
 OPENAI_API_KEY=sk-your-api-key-here
 ```
 
-**Nota:** Se estiver usando WSL2 e o Redis está rodando no WSL, use `localhost` ou `127.0.0.1`. Se estiver rodando no Windows, use o IP do WSL (obtido com `wsl hostname -I`).
+**Notas especiais:**
+- **Windows:** Use `localhost` ou `127.0.0.1`
+- **WSL2:** Se Redis está no WSL, use `localhost`. Se está no Windows, use o IP do WSL (obtido com `wsl hostname -I`)
+- **Docker:** Se Redis está em um container Docker, use `host.docker.internal:6379` (Windows) ou `172.17.0.1:6379` (Linux)
 
 ## Usando a Aplicação
 
@@ -332,9 +466,33 @@ frontend/
 
 ## Troubleshooting
 
+### Windows: Erro ao executar Python
+
+**Problema:** `'python' is not recognized as an internal or external command`
+
+**Solução:** 
+- Reinstale Python marcando "Add Python to PATH"
+- Ou use `python3` em vez de `python`
+- Ou adicione Python ao PATH manualmente
+
+### Windows: Erro ao executar npm
+
+**Problema:** `'npm' is not recognized`
+
+**Solução:**
+- Reinstale Node.js
+- Reinicie o terminal/prompt
+
 ### Erro: "Connection refused" ao conectar à API
 
-**Solução:** Certifique-se de que o FastAPI está rodando na porta 8000:
+**Windows:**
+```cmd
+cd backend
+venv\Scripts\activate
+python -m uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
+```
+
+**Linux/WSL2/macOS:**
 ```bash
 cd backend
 source venv/bin/activate
@@ -343,13 +501,30 @@ python -m uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
 
 ### Erro: "Redis connection error"
 
-**Linux/WSL:**
-```bash
-# Verificar se o Redis está rodando
-redis-cli ping
-# Resposta esperada: PONG
+**Windows (Docker):**
+```cmd
+# Verificar se Docker está rodando
+docker ps
 
-# Se não estiver rodando, inicie:
+# Se Redis não estiver rodando:
+docker run -d -p 6379:6379 redis:latest
+```
+
+**Windows (Memurai):**
+```cmd
+# Verificar status
+sc query memurai
+
+# Iniciar se necessário
+net start memurai
+```
+
+**Linux/WSL2:**
+```bash
+# Verificar se está rodando
+redis-cli ping
+
+# Se não estiver:
 redis-server
 ```
 
@@ -358,13 +533,20 @@ redis-server
 # Verificar status
 brew services list | grep redis
 
-# Se não estiver rodando:
+# Iniciar se necessário
 brew services start redis
 ```
 
 ### Erro: "Celery worker not responding"
 
-**Solução:** Reinicie o Celery worker:
+**Windows:**
+```cmd
+cd backend
+venv\Scripts\activate
+celery -A src.celery_app worker --loglevel=info
+```
+
+**Linux/WSL2/macOS:**
 ```bash
 cd backend
 source venv/bin/activate
@@ -373,7 +555,10 @@ celery -A src.celery_app worker --loglevel=info
 
 ### Tarefa fica em "Aguardando..." indefinidamente
 
-**Solução:** Verifique se o Celery worker está rodando e se o Redis está acessível.
+**Solução:** Verifique se:
+1. O Celery worker está rodando
+2. O Redis está acessível
+3. Não há erros nos logs do Celery ou FastAPI
 
 ### WSL2: Redis não inicia automaticamente
 
@@ -394,8 +579,25 @@ Se quiser acessar a aplicação do navegador do Windows:
 # No WSL, obtenha o IP
 wsl hostname -I
 
-# No Windows, acesse:
+# No Windows, acesse no navegador:
 # http://<IP-DO-WSL>:5173
+```
+
+### Windows: Porta já está em uso
+
+**Problema:** `Address already in use`
+
+**Solução:**
+```cmd
+# Encontrar qual processo está usando a porta (ex: 8000)
+netstat -ano | findstr :8000
+
+# Matar o processo (substitua PID pelo número encontrado)
+taskkill /PID <PID> /F
+
+# Ou use portas diferentes:
+python -m uvicorn src.main:app --port 8001
+npm run dev -- --port 5174
 ```
 
 ## Notas Importantes
@@ -406,9 +608,47 @@ wsl hostname -I
 4. **CORS:** A API está configurada para aceitar requisições de qualquer origem (CORS habilitado).
 5. **Ambiente Virtual:** Sempre ative o ambiente virtual antes de executar comandos Python.
 
-## Script de Inicialização Rápida (Linux/WSL)
+## Script de Inicialização Rápida
 
-Para facilitar a inicialização, crie um script `start.sh`:
+### Windows (batch script)
+
+Crie um arquivo `start.bat`:
+
+```batch
+@echo off
+echo Iniciando Flamengo AI Creator...
+
+REM Verificar se Redis está rodando
+docker ps | findstr redis >nul
+if errorlevel 1 (
+    echo Iniciando Redis com Docker...
+    docker run -d -p 6379:6379 redis:latest
+    timeout /t 2
+)
+
+REM Terminal 1: Celery Worker
+echo Iniciando Celery Worker...
+start cmd /k "cd backend && venv\Scripts\activate && celery -A src.celery_app worker --loglevel=info"
+
+REM Terminal 2: FastAPI
+echo Iniciando FastAPI...
+start cmd /k "cd backend && venv\Scripts\activate && python -m uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload"
+
+REM Terminal 3: Vite
+echo Iniciando Vite...
+start cmd /k "cd frontend && npm run dev"
+
+echo.
+echo Todos os serviços iniciados!
+echo Acesse: http://localhost:5173
+echo API Docs: http://localhost:8000/docs
+```
+
+Salve e execute clicando duas vezes no arquivo.
+
+### Linux/WSL2/macOS (bash script)
+
+Crie um arquivo `start.sh`:
 
 ```bash
 #!/bin/bash
@@ -455,7 +695,7 @@ trap "kill $CELERY_PID $FASTAPI_PID $VITE_PID" EXIT
 wait
 ```
 
-Salve como `start.sh` e execute:
+Salve e execute:
 ```bash
 chmod +x start.sh
 ./start.sh
