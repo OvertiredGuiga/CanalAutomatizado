@@ -66,6 +66,7 @@ function App() {
                 <StatusPanel
                   taskId={taskId}
                   onClose={() => setTaskId(null)}
+                  onCollectComplete={handleCollectComplete}
                 />
               </section>
             )}

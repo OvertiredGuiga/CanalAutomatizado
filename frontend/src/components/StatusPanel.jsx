@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/StatusPanel.css';
 
-const StatusPanel = ({ taskId, onClose }) => {
+const StatusPanel = ({ taskId, onClose, onCollectComplete }) => {
   const [status, setStatus] = useState('PENDING');
   const [progress, setProgress] = useState(null);
   const [result, setResult] = useState(null);
@@ -25,6 +25,12 @@ const StatusPanel = ({ taskId, onClose }) => {
         setResult(newResult);
         setError(newError);
         setLoading(false);
+
+        // Se a tarefa ainda está em progresso, continuar polling
+        // Se a coleta foi concluída, passar resultados para o App
+        if (newStatus === 'SUCCESS' && newResult && onCollectComplete) {
+          onCollectComplete(newResult);
+        }
 
         // Se a tarefa ainda está em progresso, continuar polling
         if (newStatus === 'PENDING' || newStatus === 'PROGRESS') {
