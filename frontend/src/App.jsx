@@ -16,8 +16,21 @@ function App() {
   };
 
   const handleCollectComplete = (results) => {
-    if (results && results.videos) {
-      setSearchResults(results.videos);
+    console.log('Resultados recebidos:', results);
+    
+    if (results) {
+      let videos = [];
+      
+      if (results.videos && Array.isArray(results.videos)) {
+        videos = results.videos;
+      } else if (Array.isArray(results)) {
+        videos = results;
+      } else if (results.result && results.result.videos) {
+        videos = results.result.videos;
+      }
+      
+      console.log('Videos processados:', videos);
+      setSearchResults(videos);
     }
   };
 
