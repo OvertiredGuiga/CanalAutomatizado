@@ -1003,31 +1003,8 @@ body {
   .main-content {
     margin-left: 0;
   }
-}  .app-layout {
-    flex-direction: column;
-  }
-
-  .content-area {
-    padding: 20px 15px;
-  }
-
-  .header-text h1 {
-    font-size: 22px;
-  }
-
-  .section-header h2 {
-    font-size: 22px;
-  }
-
-  .templates-grid,
-  .analytics-grid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  }
-
-  .results-grid {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  }
 }
+
 
 /* Responsive - Small Mobile */
 @media (max-width: 480px) {
