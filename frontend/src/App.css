@@ -498,6 +498,8 @@ body {
 }
 
 /* Responsive - Mobile */
+
+@import './styles/SceneDetectionPanel.css';
 @media (max-width: 768px) {
   .main-content {
     margin-left: 0;

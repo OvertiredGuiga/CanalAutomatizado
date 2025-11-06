@@ -54,7 +54,7 @@ class YouTubeDownloader:
         # Configurar opções do yt-dlp
         ydl_opts = {
             'format': format_choice,
-            'outtmpl': os.path.join(self.output_path, '%(title)s.%(ext)s'),
+            'outtmpl': os.path.join(self.output_path, '%(id)s.%(ext)s'),
             'quiet': False,
             'no_warnings': False,
             'progress_hooks': [self._progress_hook] if progress_callback else [],

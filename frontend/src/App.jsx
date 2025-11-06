@@ -5,6 +5,7 @@ import AdvancedSearch from './components/AdvancedSearch';
 import CollectForm from './components/CollectForm';
 import StatusPanel from './components/StatusPanel';
 import DownloadPanel from './components/DownloadPanel';
+import SceneDetectionPanel from './components/SceneDetectionPanel';
 import './App.css';
 
 function App() {
@@ -170,6 +171,16 @@ function App() {
           )}
 
           {/* Downloads Section */}
+          {activeSection === 'scene-detection' && (
+            <section className="section-container">
+              <div className="section-header">
+                <h2>✂️ Detecção Automática de Cenas</h2>
+                <p>Use PySceneDetect para encontrar cortes e momentos importantes em seus vídeos.</p>
+              </div>
+              <SceneDetectionPanel />
+            </section>
+          )}
+
           {activeSection === 'downloads' && (
             <section className="section-container">
               <div className="section-header">
