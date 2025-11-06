@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fluxo de Trabalho: Detecção de Cenas com PySceneDetect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #FFFFFF;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Blueprint grid background */
+        .slide-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background-image: 
+                linear-gradient(0deg, transparent 24%, rgba(15, 76, 129, 0.05) 25%, rgba(15, 76, 129, 0.05) 26%, transparent 27%, transparent 74%, rgba(15, 76, 129, 0.05) 75%, rgba(15, 76, 129, 0.05) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(15, 76, 129, 0.05) 25%, rgba(15, 76, 129, 0.05) 26%, transparent 27%, transparent 74%, rgba(15, 76, 129, 0.05) 75%, rgba(15, 76, 129, 0.05) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            gap: 60px;
+        }
+        
+        .left-section {
+            flex: 1;
+        }
+        
+        .right-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .title {
+            font-size: 64px;
+            font-weight: 700;
+            color: #1A1A2E;
+            line-height: 1.2;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+        }
+        
+        .subtitle {
+            font-size: 32px;
+            font-weight: 400;
+            color: #0F4C81;
+            margin-bottom: 50px;
+        }
+        
+        .metadata {
+            font-size: 16px;
+            color: #16213E;
+            line-height: 1.6;
+        }
+        
+        .metadata p {
+            margin-bottom: 8px;
+        }
+        
+        .author {
+            font-weight: 700;
+            color: #1A1A2E;
+        }
+        
+        /* SVG Diagram */
+        .diagram {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+        }
+        
+        /* Geometric accent lines */
+        .accent-line {
+            position: absolute;
+            background-color: #0F4C81;
+        }
+        
+        .line-1 {
+            width: 100px;
+            height: 3px;
+            top: 80px;
+            left: 0;
+        }
+        
+        .line-2 {
+            width: 3px;
+            height: 150px;
+            top: 200px;
+            right: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="accent-line line-1"></div>
+        <div class="accent-line line-2"></div>
+        
+        <div class="content">
+            <div class="left-section">
+                <h1 class="title">Fluxo de Trabalho: Detecção de Cenas com PySceneDetect</h1>
+                <p class="subtitle">Automatizando a Edição de Vídeos</p>
+                
+                <div class="metadata">
+                    <p><span class="author">Autor:</span> Manus AI</p>
+                    <p><span class="author">Projeto:</span> CanalAutomatizado</p>
+                    <p><span class="author">Data:</span> Novembro de 2025</p>
+                </div>
+            </div>
+            
+            <div class="right-section">
+                <svg class="diagram" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background circle -->
+                    <circle cx="150" cy="150" r="140" fill="none" stroke="#0F4C81" stroke-width="2" stroke-dasharray="5,5" opacity="0.3"/>
+                    
+                    <!-- Central icon: Video -->
+                    <g id="video-icon">
+                        <rect x="110" y="110" width="80" height="60" fill="none" stroke="#0F4C81" stroke-width="2" rx="4"/>
+                        <polygon points="140,130 140,160 170,145" fill="#0F4C81"/>
+                    </g>
+                    
+                    <!-- Top: Upload -->
+                    <circle cx="150" cy="40" r="20" fill="none" stroke="#0F4C81" stroke-width="2"/>
+                    <text x="150" y="45" text-anchor="middle" font-size="12" fill="#0F4C81" font-weight="bold">↑</text>
+                    
+                    <!-- Left: Processing -->
+                    <circle cx="40" cy="150" r="20" fill="none" stroke="#0F4C81" stroke-width="2"/>
+                    <text x="40" y="155" text-anchor="middle" font-size="12" fill="#0F4C81" font-weight="bold">⚙</text>
+                    
+                    <!-- Right: Results -->
+                    <circle cx="260" cy="150" r="20" fill="none" stroke="#0F4C81" stroke-width="2"/>
+                    <text x="260" y="155" text-anchor="middle" font-size="12" fill="#0F4C81" font-weight="bold">✓</text>
+                    
+                    <!-- Bottom: Storage -->
+                    <circle cx="150" cy="260" r="20" fill="none" stroke="#0F4C81" stroke-width="2"/>
+                    <text x="150" y="265" text-anchor="middle" font-size="12" fill="#0F4C81" font-weight="bold">💾</text>
+                    
+                    <!-- Connection lines -->
+                    <line x1="150" y1="60" x2="150" y2="110" stroke="#0F4C81" stroke-width="2"/>
+                    <line x1="60" y1="150" x2="110" y2="150" stroke="#0F4C81" stroke-width="2"/>
+                    <line x1="190" y1="150" x2="240" y2="150" stroke="#0F4C81" stroke-width="2"/>
+                    <line x1="150" y1="170" x2="150" y2="240" stroke="#0F4C81" stroke-width="2"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

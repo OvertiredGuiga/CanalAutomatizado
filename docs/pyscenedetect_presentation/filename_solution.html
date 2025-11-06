@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solução Crítica: Padronização de Nomes de Arquivo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #FFFFFF;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            padding: 50px 60px;
+            position: relative;
+        }
+        
+        .header {
+            margin-bottom: 40px;
+        }
+        
+        .title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1A1A2E;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            color: #E94560;
+            font-weight: 700;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+        
+        .section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            padding-bottom: 10px;
+            border-bottom: 3px solid;
+            margin-bottom: 15px;
+        }
+        
+        .problem .section-title {
+            color: #E94560;
+            border-bottom-color: #E94560;
+        }
+        
+        .solution .section-title {
+            color: #0F4C81;
+            border-bottom-color: #0F4C81;
+        }
+        
+        .problem-box {
+            background-color: #FFF5F7;
+            border-left: 4px solid #E94560;
+            padding: 15px;
+            margin-bottom: 12px;
+        }
+        
+        .solution-box {
+            background-color: #F0F5FB;
+            border-left: 4px solid #0F4C81;
+            padding: 15px;
+            margin-bottom: 12px;
+        }
+        
+        .box-title {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .problem .box-title {
+            color: #E94560;
+        }
+        
+        .solution .box-title {
+            color: #0F4C81;
+        }
+        
+        .box-content {
+            font-size: 13px;
+            color: #16213E;
+            line-height: 1.6;
+        }
+        
+        .code-example {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 12px;
+            background-color: #FFFFFF;
+            padding: 8px;
+            border-radius: 3px;
+            margin-top: 6px;
+            color: #1A1A2E;
+            word-break: break-all;
+        }
+        
+        .problem .code-example {
+            border: 1px solid #E94560;
+        }
+        
+        .solution .code-example {
+            border: 1px solid #0F4C81;
+        }
+        
+        .arrow-divider {
+            text-align: center;
+            font-size: 24px;
+            color: #0F4C81;
+            margin: 15px 0;
+            font-weight: 700;
+        }
+        
+        .result-box {
+            background-color: #F0F5FB;
+            border: 2px solid #0F4C81;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        
+        .result-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #0F4C81;
+            margin-bottom: 8px;
+        }
+        
+        .result-text {
+            font-size: 13px;
+            color: #16213E;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1 class="title">Solução Crítica: Padronização de Nomes de Arquivo</h1>
+            <p class="subtitle">Resolvendo a Incompatibilidade com PySceneDetect</p>
+        </div>
+        
+        <div class="content">
+            <!-- PROBLEMA -->
+            <div class="section problem">
+                <h2 class="section-title">❌ O PROBLEMA</h2>
+                
+                <div class="problem-box">
+                    <div class="box-title">Vídeos Baixados (yt-dlp)</div>
+                    <div class="box-content">
+                        Títulos longos com caracteres especiais, espaços e acentos causam falhas no FFmpeg e PySceneDetect.
+                    </div>
+                    <div class="code-example">Flamengo vs Botafogo - Jogo Completo (2025).mp4</div>
+                </div>
+                
+                <div class="problem-box">
+                    <div class="box-title">Vídeos Enviados (Upload)</div>
+                    <div class="box-content">
+                        Nomes de arquivo originais do usuário com espaços não são processáveis pelo PySceneDetect.
+                    </div>
+                    <div class="code-example">My Video File (Final Edit).mp4</div>
+                </div>
+                
+                <div class="problem-box">
+                    <div class="box-title">Erro Resultante</div>
+                    <div class="box-content">
+                        PySceneDetect falha ao processar arquivos com nomes inválidos, interrompendo todo o fluxo.
+                    </div>
+                    <div class="code-example">FileNotFoundError: arquivo não encontrado</div>
+                </div>
+            </div>
+            
+            <!-- SOLUÇÃO -->
+            <div class="section solution">
+                <h2 class="section-title">✓ A SOLUÇÃO</h2>
+                
+                <div class="solution-box">
+                    <div class="box-title">Vídeos Baixados (yt-dlp)</div>
+                    <div class="box-content">
+                        Alterado o template de saída para usar o ID do vídeo (identificador único e seguro).
+                    </div>
+                    <div class="code-example">%(id)s.%(ext)s</div>
+                    <div class="arrow-divider">↓</div>
+                    <div class="code-example">dQw4w9WgXcQ.mp4</div>
+                </div>
+                
+                <div class="solution-box">
+                    <div class="box-title">Vídeos Enviados (Upload)</div>
+                    <div class="box-content">
+                        Sanitização automática: espaços e caracteres especiais são substituídos por underscores.
+                    </div>
+                    <div class="code-example">My Video File (Final Edit).mp4</div>
+                    <div class="arrow-divider">↓</div>
+                    <div class="code-example">My_Video_File__Final_Edit_.mp4</div>
+                </div>
+                
+                <div class="result-box">
+                    <div class="result-title">📊 RESULTADO</div>
+                    <div class="result-text">
+                        Processamento estável e confiável do PySceneDetect, independentemente da origem do vídeo.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interface do Usuário: Painel de Detecção de Cenas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #FFFFFF;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            padding: 50px 60px;
+            position: relative;
+        }
+        
+        .header {
+            margin-bottom: 30px;
+        }
+        
+        .title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1A1A2E;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            color: #0F4C81;
+            font-weight: 700;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+        
+        .dashboard-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .dashboard-image img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            max-width: 450px;
+            border: 2px solid #0F4C81;
+        }
+        
+        .features-section {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        
+        .feature {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        
+        .feature-icon {
+            min-width: 32px;
+            width: 32px;
+            height: 32px;
+            background-color: #0F4C81;
+            color: #FFFFFF;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        
+        .feature-content {
+            flex: 1;
+        }
+        
+        .feature-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1A1A2E;
+            margin-bottom: 4px;
+        }
+        
+        .feature-description {
+            font-size: 13px;
+            color: #16213E;
+            line-height: 1.5;
+        }
+        
+        .feature-list {
+            font-size: 12px;
+            color: #16213E;
+            margin-top: 6px;
+            margin-left: 15px;
+        }
+        
+        .feature-list li {
+            list-style-type: disc;
+            margin-bottom: 3px;
+        }
+        
+        .divider {
+            height: 1px;
+            background-color: #0F4C81;
+            opacity: 0.2;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1 class="title">Interface do Usuário: Painel de Detecção de Cenas</h1>
+            <p class="subtitle">Experiência do Usuário na Dashboard</p>
+        </div>
+        
+        <div class="content">
+            <div class="dashboard-image">
+                <img src="/home/ubuntu/upload/search_images/VRef2bZXhg3K.png" alt="Dashboard Interface"/>
+            </div>
+            
+            <div class="features-section">
+                <div class="feature">
+                    <div class="feature-icon">1</div>
+                    <div class="feature-content">
+                        <div class="feature-title">Upload/Seleção de Vídeo</div>
+                        <div class="feature-description">
+                            Permite o upload de um novo vídeo ou a seleção de um vídeo já baixado no servidor.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="divider"></div>
+                
+                <div class="feature">
+                    <div class="feature-icon">2</div>
+                    <div class="feature-content">
+                        <div class="feature-title">Parâmetros de Detecção</div>
+                        <div class="feature-description">
+                            Escolha do tipo de detector e ajuste do threshold de sensibilidade.
+                        </div>
+                        <ul class="feature-list">
+                            <li>Content Detector (padrão)</li>
+                            <li>Adaptive Detector (customizável)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="divider"></div>
+                
+                <div class="feature">
+                    <div class="feature-icon">3</div>
+                    <div class="feature-content">
+                        <div class="feature-title">Status em Tempo Real</div>
+                        <div class="feature-description">
+                            Exibe o status atual da tarefa usando o task_id do Celery.
+                        </div>
+                        <ul class="feature-list">
+                            <li>Enfileirada</li>
+                            <li>Em Progresso</li>
+                            <li>Sucesso ou Falha</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="divider"></div>
+                
+                <div class="feature">
+                    <div class="feature-icon">4</div>
+                    <div class="feature-content">
+                        <div class="feature-title">Visualização de Resultados</div>
+                        <div class="feature-description">
+                            Lista clara com timestamps de Início, Fim e Duração de cada cena detectada.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

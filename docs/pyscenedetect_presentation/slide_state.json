@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "title": "Automatizando a Edição de Vídeos",
+    "created": 1762441953.433545,
+    "last_updated": 1762442044.4752593,
+    "total_slides": 7
+  },
+  "slides": {
+    "intro": "edited",
+    "workflow": "edited",
+    "backend": "edited",
+    "backend_cont": "edited",
+    "filename_solution": "edited",
+    "dashboard": "edited",
+    "next_steps": "edited"
+  },
+  "outline": [
+    {
+      "id": "intro",
+      "title": "Automatizando a Edição de Vídeos",
+      "summary": "Apresentação do projeto CanalAutomatizado e da integração do PySceneDetect para detecção automática de cenas em vídeos, eliminando a necessidade de edição manual.",
+      "image_plan": "/home/ubuntu/upload/search_images/qGAJXtNGdjyW.jpg - The slide introduces the concept of scene detection and workflow. Image 4 is a clear, high-level workflow diagram that fits the introductory context.",
+      "slide_template_key": ""
+    },
+    {
+      "id": "workflow",
+      "title": "Fluxo Ponta a Ponta: Do Upload à Detecção",
+      "summary": "Diagrama detalhado do processo de detecção de cenas, desde o upload/download do vídeo, passando pelo FastAPI e Celery, até a execução do PySceneDetect e retorno dos resultados.",
+      "image_plan": "/home/ubuntu/upload/search_images/9IDYPMxrcUnW.jpg - This slide details the end-to-end workflow involving the frontend, FastAPI, Celery, and PySceneDetect. Image 5 is a detailed system architecture diagram that explicitly mentions FastAPI, Celery, and a browser/dashboard, perfectly illustrating the described flow.",
+      "slide_template_key": ""
+    },
+    {
+      "id": "backend",
+      "title": "Backend: FastAPI e Celery para Processamento Assíncrono",
+      "summary": "Explicação técnica dos componentes FastAPI e Celery que formam a base da arquitetura assíncrona. FastAPI expõe os endpoints para iniciar a detecção e consultar o status das tarefas, enquanto Celery gerencia a execução em background através de uma queue de tarefas distribuída, permitindo que o servidor responda rapidamente ao usuário.",
+      "image_plan": "/home/ubuntu/upload/search_images/n3GSRrAtyfrT.png; /home/ubuntu/upload/search_images/Z3dMPQzmbs4d.png - The slide focuses on the backend technologies: FastAPI and Celery for asynchronous processing. Images 7 and 8 are illustrations that specifically represent Celery and FastAPI, respectively, and their integration.",
+      "slide_template_key": ""
+    },
+    {
+      "id": "backend_cont",
+      "title": "PySceneDetect: Motor de Detecção de Cenas",
+      "summary": "Detalhamento do PySceneDetect e do módulo SceneDetector encapsulado. Explica os diferentes tipos de detectores disponíveis (ContentDetector e AdaptiveDetector), como o módulo encapsula a lógica de detecção, e como os resultados (timestamps de cenas) são retornados para exibição na dashboard.",
+      "slide_template_key": "",
+      "image_plan": ""
+    },
+    {
+      "id": "filename_solution",
+      "title": "Solução Crítica: Padronização de Nomes de Arquivo",
+      "summary": "Apresentação do problema de compatibilidade com nomes de arquivo contendo espaços e a solução implementada para vídeos baixados (yt-dlp) e enviados (upload).",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "dashboard",
+      "title": "Interface do Usuário: Painel de Detecção de Cenas",
+      "summary": "Demonstração da experiência do usuário no novo painel de detecção de cenas, incluindo upload, seleção de parâmetros, monitoramento de status em tempo real e visualização de resultados.",
+      "image_plan": "/home/ubuntu/upload/search_images/iT8lPuXyOR3q.png; /home/ubuntu/upload/search_images/VRef2bZXhg3K.png - The slide describes the user experience on the dashboard (Frontend), including status, parameters, and results. Images 10 and 11 are professional dashboard/UI mockups that visually represent the frontend interaction.",
+      "slide_template_key": ""
+    },
+    {
+      "id": "next_steps",
+      "title": "Próximas Etapas e Integração Futura",
+      "summary": "Discussão sobre os próximos passos lógicos: desenvolvimento do editor de cortes, automação do fluxo de trabalho e integração com o sistema de coleta automática.",
+      "image_plan": "/home/ubuntu/upload/search_images/YWOrf8227Xeg.webp - The final slide discusses future steps, specifically an \"Editor de Cortes\" (Cut Editor) and automation. Image 6 shows a concept related to AI-powered scene detection and video editing, which aligns well with the \"next steps\" of utilizing the scene data for automated cuts.",
+      "slide_template_key": ""
+    }
+  ]
+}

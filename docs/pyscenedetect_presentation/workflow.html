@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fluxo Ponta a Ponta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #FFFFFF;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            padding: 50px 60px;
+            position: relative;
+        }
+        
+        .header {
+            margin-bottom: 40px;
+        }
+        
+        .title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1A1A2E;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            color: #0F4C81;
+            font-weight: 700;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+        
+        .diagram-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .diagram-section img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            max-width: 400px;
+        }
+        
+        .steps-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .step {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            min-width: 40px;
+            width: 40px;
+            height: 40px;
+            background-color: #0F4C81;
+            color: #FFFFFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1A1A2E;
+            margin-bottom: 4px;
+        }
+        
+        .step-description {
+            font-size: 14px;
+            color: #16213E;
+            line-height: 1.5;
+        }
+        
+        .arrow {
+            color: #0F4C81;
+            font-size: 18px;
+            margin: -5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1 class="title">Fluxo Ponta a Ponta: Do Upload à Detecção</h1>
+            <p class="subtitle">Processo de Detecção de Cenas</p>
+        </div>
+        
+        <div class="content">
+            <div class="diagram-section">
+                <img src="/home/ubuntu/upload/search_images/9IDYPMxrcUnW.jpg" alt="Arquitetura FastAPI + Celery"/>
+            </div>
+            
+            <div class="steps-section">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Frontend (Dashboard)</div>
+                        <div class="step-description">Usuário inicia o processo de detecção de cenas através do painel.</div>
+                    </div>
+                </div>
+                
+                <div class="arrow">↓</div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Upload/Download</div>
+                        <div class="step-description">Vídeo é carregado ou baixado via yt-dlp para o servidor.</div>
+                    </div>
+                </div>
+                
+                <div class="arrow">↓</div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">FastAPI (Endpoint)</div>
+                        <div class="step-description">Endpoint recebe o arquivo e enfileira uma tarefa no Celery.</div>
+                    </div>
+                </div>
+                
+                <div class="arrow">↓</div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-title">Celery (Worker)</div>
+                        <div class="step-description">Worker executa a tarefa em background com PySceneDetect.</div>
+                    </div>
+                </div>
+                
+                <div class="arrow">↓</div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <div class="step-title">Resultado</div>
+                        <div class="step-description">Timestamps de cenas são retornados e exibidos na dashboard.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

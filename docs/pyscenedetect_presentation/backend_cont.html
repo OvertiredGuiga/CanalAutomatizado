@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PySceneDetect: Motor de Detecção de Cenas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #FFFFFF;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            padding: 50px 60px;
+            position: relative;
+        }
+        
+        .header {
+            margin-bottom: 35px;
+        }
+        
+        .title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1A1A2E;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            color: #0F4C81;
+            font-weight: 700;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            flex: 1;
+        }
+        
+        .section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1A1A2E;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #0F4C81;
+            margin-bottom: 10px;
+        }
+        
+        .detector-card {
+            border-left: 3px solid #0F4C81;
+            padding: 12px 15px;
+            background-color: #F9F9F9;
+            margin-bottom: 12px;
+        }
+        
+        .detector-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1A1A2E;
+            margin-bottom: 6px;
+            font-family: 'Roboto Mono', monospace;
+        }
+        
+        .detector-description {
+            font-size: 13px;
+            color: #16213E;
+            line-height: 1.5;
+            margin-bottom: 6px;
+        }
+        
+        .detector-feature {
+            font-size: 12px;
+            color: #16213E;
+            margin-left: 15px;
+            margin-bottom: 3px;
+        }
+        
+        .detector-feature::before {
+            content: '▸ ';
+            color: #0F4C81;
+            font-weight: 700;
+        }
+        
+        .module-box {
+            border: 2px solid #0F4C81;
+            padding: 15px;
+            background-color: #F0F5FB;
+            margin-bottom: 15px;
+        }
+        
+        .module-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #0F4C81;
+            margin-bottom: 8px;
+        }
+        
+        .module-description {
+            font-size: 13px;
+            color: #16213E;
+            line-height: 1.5;
+        }
+        
+        .flow-step {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+            align-items: flex-start;
+        }
+        
+        .flow-number {
+            min-width: 24px;
+            width: 24px;
+            height: 24px;
+            background-color: #0F4C81;
+            color: #FFFFFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+        
+        .flow-content {
+            flex: 1;
+        }
+        
+        .flow-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1A1A2E;
+            margin-bottom: 3px;
+        }
+        
+        .flow-description {
+            font-size: 13px;
+            color: #16213E;
+            line-height: 1.5;
+        }
+        
+        .divider {
+            height: 1px;
+            background-color: #0F4C81;
+            opacity: 0.2;
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1 class="title">PySceneDetect: Motor de Detecção de Cenas</h1>
+            <p class="subtitle">Módulo SceneDetector e Tipos de Detectores</p>
+        </div>
+        
+        <div class="content">
+            <!-- LEFT SECTION: Detectores -->
+            <div class="section">
+                <h2 class="section-title">Tipos de Detectores</h2>
+                
+                <div class="detector-card">
+                    <div class="detector-name">ContentDetector</div>
+                    <div class="detector-description">
+                        Detector padrão que analisa mudanças de conteúdo entre frames.
+                    </div>
+                    <div class="detector-feature">Sensível a mudanças abruptas de cor</div>
+                    <div class="detector-feature">Ideal para cortes de câmera</div>
+                    <div class="detector-feature">Threshold ajustável (padrão: 27.0)</div>
+                </div>
+                
+                <div class="detector-card">
+                    <div class="detector-name">AdaptiveDetector</div>
+                    <div class="detector-description">
+                        Detector customizável com algoritmo adaptativo mais preciso.
+                    </div>
+                    <div class="detector-feature">Aprende padrões do vídeo</div>
+                    <div class="detector-feature">Melhor para transições suaves</div>
+                    <div class="detector-feature">Configuração avançada de parâmetros</div>
+                </div>
+                
+                <div class="module-box">
+                    <div class="module-title">🔧 Módulo SceneDetector</div>
+                    <div class="module-description">
+                        Classe Python que encapsula a lógica do PySceneDetect, permitindo a escolha e configuração dos detectores de forma programática.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- RIGHT SECTION: Fluxo de Resultados -->
+            <div class="section">
+                <h2 class="section-title">Fluxo de Resultados</h2>
+                
+                <div class="flow-step">
+                    <div class="flow-number">1</div>
+                    <div class="flow-content">
+                        <div class="flow-title">Análise do Vídeo</div>
+                        <div class="flow-description">
+                            PySceneDetect processa o arquivo de vídeo frame a frame usando o detector escolhido.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="divider"></div>
+                
+                <div class="flow-step">
+                    <div class="flow-number">2</div>
+                    <div class="flow-content">
+                        <div class="flow-title">Detecção de Transições</div>
+                        <div class="flow-description">
+                            Identifica os pontos exatos onde ocorrem transições de cena (em segundos ou frames).
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="divider"></div>
+                
+                <div class="flow-step">
+                    <div class="flow-number">3</div>
+                    <div class="flow-content">
+                        <div class="flow-title">Retorno de Timestamps</div>
+                        <div class="flow-description">
+                            Retorna lista de timestamps precisos de início, fim e duração de cada cena detectada.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="divider"></div>
+                
+                <div class="flow-step">
+                    <div class="flow-number">4</div>
+                    <div class="flow-content">
+                        <div class="flow-title">Exibição na Dashboard</div>
+                        <div class="flow-description">
+                            Resultados são armazenados e exibidos na interface do usuário para visualização e ação.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

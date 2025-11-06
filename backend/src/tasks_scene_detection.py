@@ -6,7 +6,6 @@ import logging
 from celery import shared_task, Task
 from src.celery_app import celery_app
 from src.modules.scene_detector import SceneDetector
-from scenedetect.frame_timecode import FrameTimecode
 
 logger = logging.getLogger(__name__)
 

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Próximas Etapas e Integração Futura</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #FFFFFF;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            padding: 50px 60px;
+            position: relative;
+        }
+        
+        .header {
+            margin-bottom: 40px;
+        }
+        
+        .title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1A1A2E;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            color: #0F4C81;
+            font-weight: 700;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+            flex: 1;
+        }
+        
+        .image-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .image-section img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            max-width: 350px;
+        }
+        
+        .steps-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .step-card {
+            padding: 15px;
+            border-left: 3px solid #0F4C81;
+            background-color: #F9F9F9;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        
+        .step-icon {
+            width: 28px;
+            height: 28px;
+            background-color: #0F4C81;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        
+        .step-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1A1A2E;
+        }
+        
+        .step-description {
+            font-size: 14px;
+            color: #16213E;
+            line-height: 1.5;
+            margin-left: 38px;
+        }
+        
+        .footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #0F4C81;
+        }
+        
+        .footer-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1A1A2E;
+        }
+        
+        .footer-subtitle {
+            font-size: 16px;
+            color: #0F4C81;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1 class="title">Próximas Etapas e Integração Futura</h1>
+            <p class="subtitle">O que vem a seguir?</p>
+        </div>
+        
+        <div class="content">
+            <div class="image-section">
+                <img src="/home/ubuntu/upload/search_images/YWOrf8227Xeg.webp" alt="Editor de Cortes e Automação"/>
+            </div>
+            
+            <div class="steps-section">
+                <div class="step-card">
+                    <div class="step-header">
+                        <div class="step-icon">1</div>
+                        <div class="step-title">Editor de Cortes</div>
+                    </div>
+                    <div class="step-description">
+                        Desenvolver a funcionalidade para que o usuário possa selecionar cenas da lista e gerar automaticamente o corte final do vídeo usando FFmpeg.
+                    </div>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-header">
+                        <div class="step-icon">2</div>
+                        <div class="step-title">Automação do Fluxo</div>
+                    </div>
+                    <div class="step-description">
+                        Integrar a detecção de cenas ao fluxo de trabalho de coleta automática, permitindo que o sistema filtre e processe apenas as cenas mais relevantes.
+                    </div>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-header">
+                        <div class="step-icon">3</div>
+                        <div class="step-title">Integração com IA</div>
+                    </div>
+                    <div class="step-description">
+                        Implementar análise de conteúdo com IA para classificar cenas por relevância, emoção e qualidade, otimizando a seleção automática de cortes.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-title">Obrigado!</div>
+            <div class="footer-subtitle">Perguntas?</div>
+        </div>
+    </div>
+</body>
+</html>

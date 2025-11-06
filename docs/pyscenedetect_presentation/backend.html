@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend: FastAPI e Celery para Processamento Assíncrono</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #FFFFFF;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            padding: 50px 60px;
+            position: relative;
+        }
+        
+        .header {
+            margin-bottom: 35px;
+        }
+        
+        .title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1A1A2E;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            color: #0F4C81;
+            font-weight: 700;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+            flex: 1;
+        }
+        
+        .components-column {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .component {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .component-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #0F4C81;
+        }
+        
+        .component-icon {
+            width: 28px;
+            height: 28px;
+            background-color: #0F4C81;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            font-weight: 700;
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+        
+        .component-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1A1A2E;
+        }
+        
+        .component-image {
+            width: 100%;
+            height: 120px;
+            object-fit: contain;
+            background-color: #F9F9F9;
+            padding: 8px;
+            border: 1px solid #0F4C81;
+            border-radius: 4px;
+        }
+        
+        .component-description {
+            font-size: 13px;
+            color: #16213E;
+            line-height: 1.5;
+        }
+        
+        .feature-list {
+            font-size: 12px;
+            color: #16213E;
+            line-height: 1.7;
+            margin-top: 6px;
+        }
+        
+        .feature-list li {
+            margin-left: 18px;
+            list-style-type: disc;
+        }
+        
+        .explanation-column {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        
+        .explanation-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1A1A2E;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #0F4C81;
+        }
+        
+        .section-text {
+            font-size: 13px;
+            color: #16213E;
+            line-height: 1.6;
+        }
+        
+        .flow-diagram {
+            background-color: #F9F9F9;
+            border-left: 3px solid #0F4C81;
+            padding: 12px;
+            margin-top: 8px;
+            font-size: 12px;
+            color: #16213E;
+            line-height: 1.8;
+            font-family: 'Roboto Mono', monospace;
+        }
+        
+        .flow-step {
+            margin-bottom: 6px;
+        }
+        
+        .flow-arrow {
+            text-align: center;
+            color: #0F4C81;
+            font-weight: 700;
+            margin: 3px 0;
+            font-size: 14px;
+        }
+        
+        .divider {
+            height: 1px;
+            background-color: #0F4C81;
+            opacity: 0.2;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1 class="title">Backend: FastAPI e Celery para Processamento Assíncrono</h1>
+            <p class="subtitle">Arquitetura de Processamento em Background</p>
+        </div>
+        
+        <div class="content">
+            <!-- Coluna Esquerda: Componentes -->
+            <div class="components-column">
+                <!-- FastAPI -->
+                <div class="component">
+                    <div class="component-header">
+                        <div class="component-icon">⚡</div>
+                        <div class="component-title">FastAPI</div>
+                    </div>
+                    <img src="/home/ubuntu/upload/search_images/Z3dMPQzmbs4d.png" alt="FastAPI" class="component-image"/>
+                    <div class="component-description">
+                        Framework web moderno para construir APIs REST de alta performance.
+                    </div>
+                    <ul class="feature-list">
+                        <li>Endpoints para iniciar detecção</li>
+                        <li>Consulta de status (task_id)</li>
+                        <li>Resposta imediata ao cliente</li>
+                    </ul>
+                </div>
+                
+                <div class="divider"></div>
+                
+                <!-- Celery -->
+                <div class="component">
+                    <div class="component-header">
+                        <div class="component-icon">⚙</div>
+                        <div class="component-title">Celery</div>
+                    </div>
+                    <img src="/home/ubuntu/upload/search_images/n3GSRrAtyfrT.png" alt="Celery" class="component-image"/>
+                    <div class="component-description">
+                        Queue de tarefas distribuída para processamento em background.
+                    </div>
+                    <ul class="feature-list">
+                        <li>Executa tarefas assincronamente</li>
+                        <li>Gerencia status e progresso</li>
+                        <li>Integra com Redis/RabbitMQ</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Coluna Direita: Explicação -->
+            <div class="explanation-column">
+                <div class="explanation-section">
+                    <div class="section-title">Como Funciona a Integração</div>
+                    <div class="section-text">
+                        FastAPI e Celery trabalham juntos para criar um sistema robusto e escalável. FastAPI expõe os endpoints REST que o cliente chama, enquanto Celery gerencia a execução das tarefas pesadas em background.
+                    </div>
+                </div>
+                
+                <div class="explanation-section">
+                    <div class="section-title">Fluxo Assíncrono</div>
+                    <div class="flow-diagram">
+                        <div class="flow-step">1. Cliente → FastAPI</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-step">2. FastAPI enfileira tarefa</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-step">3. Retorna task_id imediatamente</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-step">4. Celery processa em background</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-step">5. Cliente consulta status</div>
+                    </div>
+                </div>
+                
+                <div class="explanation-section">
+                    <div class="section-title">Benefícios</div>
+                    <div class="section-text">
+                        ✓ Servidor não bloqueia durante processamento<br/>
+                        ✓ Suporta múltiplas tarefas simultâneas<br/>
+                        ✓ Escalável horizontalmente<br/>
+                        ✓ Recuperação automática de falhas
+                    </div>
+                </div>
+                
+                <div class="explanation-section" style="margin-top: auto; padding-top: 15px; border-top: 2px solid #0F4C81; opacity: 0.7;">
+                    <div class="section-text" style="font-size: 12px; font-style: italic;">
+                        Próximo: PySceneDetect e módulo SceneDetector →
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
