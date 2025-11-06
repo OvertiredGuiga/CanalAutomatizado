@@ -1,9 +1,9 @@
 /* Dashboard Stats Styles */
 .dashboard-stats {
   padding: 20px;
-  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
-  border-radius: 12px;
-  color: #ffffff;
+  background-color: var(--color-background);
+  border-radius: 8px;
+  color: var(--color-text-light);
 }
 
 .stats-header {
@@ -14,11 +14,11 @@
   font-size: 28px;
   font-weight: 700;
   margin: 0 0 5px 0;
-  color: #ffffff;
+  color: var(--color-text-light);
 }
 
 .subtitle {
-  color: #b0b0b0;
+  color: var(--color-text-muted);
   font-size: 14px;
   margin: 0;
 }
@@ -32,13 +32,14 @@
 }
 
 .stat-card {
-  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-  border: 1px solid rgba(194, 42, 30, 0.2);
-  border-radius: 12px;
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
   padding: 20px;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .stat-card::before {
@@ -48,16 +49,16 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #c22a1e, transparent);
+  background-color: var(--color-primary);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
 .stat-card:hover {
-  border-color: #c22a1e;
-  background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(194, 42, 30, 0.2);
+  border-color: var(--color-primary);
+  background-color: var(--color-card);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(194, 42, 30, 0.2);
 }
 
 .stat-card:hover::before {
@@ -78,20 +79,20 @@
 }
 
 .card-title {
-  font-size: 14px;
-  color: #b0b0b0;
+  font-size: 16px;
+  color: var(--color-text-muted);
   font-weight: 500;
 }
 
 .card-value {
-  font-size: 32px;
+  font-size: 36px;
   font-weight: 700;
-  color: #c22a1e;
+  color: var(--color-primary);
   margin-bottom: 8px;
 }
 
 .card-trend {
-  font-size: 12px;
+  font-size: 14px;
   color: #2ecc71;
   font-weight: 600;
 }
@@ -100,24 +101,25 @@
 .loading {
   text-align: center;
   padding: 40px;
-  color: #b0b0b0;
+  color: var(--color-text-muted);
   font-size: 16px;
 }
 
 /* Activity Section */
 .activity-section {
-  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-  border: 1px solid rgba(194, 42, 30, 0.2);
-  border-radius: 12px;
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
   padding: 25px;
   margin-bottom: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .activity-section h3 {
   font-size: 18px;
   font-weight: 600;
   margin: 0 0 20px 0;
-  color: #ffffff;
+  color: var(--color-text-light);
 }
 
 .activity-chart {
@@ -130,8 +132,8 @@
 
 .chart-bar {
   flex: 1;
-  background: linear-gradient(180deg, #c22a1e 0%, #a01f17 100%);
-  border-radius: 8px 8px 0 0;
+  background-color: var(--color-primary);
+  border-radius: 4px 4px 0 0;
   position: relative;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -142,7 +144,7 @@
 }
 
 .chart-bar:hover {
-  background: linear-gradient(180deg, #e74c3c 0%, #c22a1e 100%);
+  background-color: #a01f17;
   box-shadow: 0 5px 15px rgba(194, 42, 30, 0.4);
 }
 
@@ -150,23 +152,24 @@
   position: absolute;
   bottom: -25px;
   font-size: 12px;
-  color: #b0b0b0;
+  color: var(--color-text-muted);
   font-weight: 500;
 }
 
 /* Quick Actions */
 .quick-actions {
-  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-  border: 1px solid rgba(194, 42, 30, 0.2);
-  border-radius: 12px;
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
   padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .quick-actions h3 {
   font-size: 18px;
   font-weight: 600;
   margin: 0 0 20px 0;
-  color: #ffffff;
+  color: var(--color-text-light);
 }
 
 .actions-grid {
@@ -183,9 +186,9 @@
   gap: 10px;
   padding: 20px;
   background: rgba(194, 42, 30, 0.1);
-  border: 1px solid rgba(194, 42, 30, 0.3);
-  border-radius: 10px;
-  color: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text-light);
   cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 500;
@@ -193,8 +196,8 @@
 
 .action-btn:hover {
   background: rgba(194, 42, 30, 0.2);
-  border-color: #c22a1e;
-  transform: translateY(-3px);
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(194, 42, 30, 0.2);
 }
 

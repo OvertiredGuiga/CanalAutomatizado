@@ -4,17 +4,18 @@
     display: flex;
     gap: 30px;
     padding: 20px;
-    background-color: #f8f8f8;
+    background-color: var(--color-background);
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .detection-form-container, .detection-status-container {
     flex: 1;
     padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    background-color: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background-color: var(--color-card);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .detection-form {
@@ -31,33 +32,35 @@
 .form-group label {
     font-weight: bold;
     margin-bottom: 5px;
-    color: #333;
+    color: var(--color-text-light);
 }
 
 .form-group input[type="file"],
 .form-group select,
 .form-group input[type="number"] {
     padding: 10px;
-    border: 1px solid #ccc;
+    background-color: var(--color-background);
+    color: var(--color-text-light);
+    border: 1px solid var(--color-border);
     border-radius: 4px;
     font-size: 1em;
 }
 
 .form-group small {
     font-size: 0.8em;
-    color: #666;
+    color: var(--color-text-muted);
     margin-top: 5px;
 }
 
 .file-info {
     margin-top: 10px;
     font-size: 0.9em;
-    color: #007bff;
+    color: var(--color-primary);
 }
 
 .detect-btn {
-    background-color: #c22a1e; /* Cor do Flamengo */
-    color: white;
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
     padding: 12px 20px;
     border: none;
     border-radius: 4px;
@@ -68,26 +71,28 @@
 }
 
 .detect-btn:hover:not(:disabled) {
-    background-color: #a02018;
+    background-color: #a01f17;
 }
 
 .detect-btn:disabled {
-    background-color: #ccc;
+    background-color: #555555;
+    color: #999999;
     cursor: not-allowed;
 }
 
 .detection-status-container h3 {
     margin-top: 0;
-    border-bottom: 2px solid #eee;
+    border-bottom: 1px solid var(--color-border);
     padding-bottom: 10px;
     margin-bottom: 15px;
+    color: var(--color-text-light);
 }
 
 .error-message {
-    color: #dc3545;
+    color: #ffbaba;
     font-weight: bold;
-    background-color: #f8d7da;
-    border: 1px solid #f5c6cb;
+    background-color: #3d1518;
+    border: 1px solid var(--color-primary);
     padding: 10px;
     border-radius: 4px;
 }
@@ -95,7 +100,7 @@
 .scenes-results {
     margin-top: 20px;
     padding-top: 15px;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--color-border);
 }
 
 .scenes-list {
@@ -105,22 +110,23 @@
 }
 
 .scene-item {
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-border);
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 4px;
-    background-color: #f9f9f9;
+    background-color: var(--color-background);
 }
 
 .scene-item p {
     margin: 5px 0;
     font-size: 0.9em;
+    color: var(--color-text-muted);
 }
 
 .download-scenes-btn {
     margin-top: 15px;
-    background-color: #007bff;
-    color: white;
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
@@ -130,5 +136,5 @@
 }
 
 .download-scenes-btn:hover {
-    background-color: #0056b3;
+    background-color: #a01f17;
 }
